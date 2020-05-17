@@ -1,0 +1,72 @@
+{
+    "config": {
+        "serverURL": "https://10.30.110.199:30603/",
+        "cwPswd": "Cisco123!",
+        "cwUser": "admin", 
+        "ztpDevices": [
+            {     
+                "ztpScriptConfigFile": "/lib/ztp_configs/ztp_script.py",
+                "ztpScriptConfigName": "ncs5500_ztp_script.py",
+                "ztpScriptConfigUUID": "803cb1bb-dbee-4468-9467-13b484de5701",
+                "serialNumber": "FOC2137R1MX",
+                "ztpProfile": {
+                    "osPlatform": "IOS-XR",
+                    "profileId": "69759055-4be1-4dd2-8de9-193f30c6d413",
+                    "configName": "ncs5500_ztp_script.py",
+                    "config": "",
+                    "image": "",
+                    "deviceFamily": "CISCO NCS5500",
+                    "profileName": "NCS_ZTP_profile",
+                    "version": "6.6.3"
+                },
+                "osName": "IOS-XR",
+                "osVersion": "6.6.3",
+                "ztpCredentialProfile": {
+                        "profile": "NCS5500_ZTP",
+                        "v2_info": {
+                            "read_community": "cisco",
+                            "write_community": "cisco"
+                        },
+                        "user_pass": [
+                            {
+                              "user_name": "netops",
+                              "password": "lab",
+                              "type": "ROBOT_USERPASS_SSH"
+                            },
+                            {
+                              "user_name": "root",
+                              "password": "lab",
+                              "type": "ROBOT_USERPASS_ADMIN"
+                            },
+                            { 
+                               "user_name":"netops",
+                               "password":"lab",
+                               "type":"ROBOT_USERPASS_NETCONF"
+                            }
+                        ]
+                },
+                "device": {
+                    "additionalAttributes": {},
+                    "serialNumber": "",
+                    "credentialProfile": "NCS5500_ZTP",
+                    "status": "Unprovisioned",
+                    "version": "",
+                    "providerInfo": {
+                        "providerName": "",
+                        "providerDeviceKey": ""
+                    },
+                    "osPlatform": "IOS-XR",
+                    "uuid": "d9d30972-210d-4f8c-a55d-6919ea0049ce",
+                    "deviceFamily": "CISCO NCS5500",
+                    "config": "",
+                    "image": "",
+                    "connectivityDetails": [],
+                    "ipAddress": {},
+                    "hostName": "ztp-device-1"
+                },
+                "imageTitle": "663_XR_mini",
+                "deviceFamily": "CISCO NCS5500"
+            }
+        ]
+    }
+}
