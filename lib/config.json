@@ -5,7 +5,7 @@
         "cwUser": "admin", 
         "ztpDevices": [
             {     
-                "ztpScriptConfigFile": "/lib/ztp_configs/ztp_script.py",
+                "ztpScriptConfigFile": "/usr/local/lib/xr-restztp/ztp_configs/ztp_script.py",
                 "ztpScriptConfigName": "ncs5500_ztp_script.py",
                 "ztpScriptConfigUUID": "803cb1bb-dbee-4468-9467-13b484de5701",
                 "serialNumber": "FOC2137R1MX",
