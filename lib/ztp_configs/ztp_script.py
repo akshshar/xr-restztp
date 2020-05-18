@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-#Test 5
 import sys
 sys.path.append("/pkg/bin/")
 from ztp_helper import ZtpHelpers
@@ -139,6 +138,9 @@ if __name__ == "__main__":
     print "\n###### Executing a show command ######\n"
     pprint(ztp_script.xrcmd({"exec_cmd" :  "show running-config"}))
 
+
+
+    print "\n###### Executing exec commands with/without prompts ######\n"
     # Set up Crypto rsa keys for SSH access
 
     show_pubkey = ztp_script.xrcmd({"exec_cmd" : "show crypto key mypubkey rsa"}) 
@@ -159,7 +161,7 @@ if __name__ == "__main__":
     print "\n###### Apply valid configuration using a string ######\n"
     out = ztp_script.xrapply_string("domain name-server 171.70.168.183")
     pprint(out)
-    
+
     # Config apply with file using Parent class helper method: xrapply
 
     print "\n###### Apply valid configuration using a file ######\n"
@@ -189,7 +191,7 @@ if __name__ == "__main__":
 
 
 
-# Determine Final IPv4 address applied to Mgmt port
+    # Determine Final IPv4 address applied to Mgmt port
     try:
         mgmt_config = ztp_script.xrcmd({"exec_cmd" : "show running-config interface MgmtEth0/RP0/CPU0/0"})
         mgmt_ip = mgmt_config['output'][1].split()[2] 
