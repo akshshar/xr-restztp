@@ -64,18 +64,18 @@ class ZtpHook(Resource):
                     app.config["eventq"].put(posted_data)
                     SN_WhiteList.remove(posted_data["serialNumber"])
                     if not SN_WhiteList:
-                        print("All devices in SN_WhiteList onboarded, wrapping up....")
+                        print("\nAll devices in SN_WhiteList onboarded, wrapping up....")
                         app.config["eventq"].put("quit")
                 message = {"Result": "Success",
                            "msg" : "Device onboarding initiated"}
 
             else:
-                print("Device not in Serial Number Whitelist")
+                print("\nDevice not in Serial Number Whitelist")
                 message = {"Result": "Error",
                            "msg" : "Device not in Serial Number Whitelist"}
 
         except Exception as e:
-            print("Failed to handle POST request. Error is "+str(e))
+            print("\nFailed to handle POST request. Error is "+str(e))
         
             message = {"Result": "Error",
                        "msg" : "Failed to handle request. Error is "+str(e)}
@@ -128,7 +128,7 @@ if __name__ == "__main__":
         if response.status_code == 201:
             ticket = response.text
         else:
-            print("Failed to obtain Ticket from Crosswork, aborting....")
+            print("\nFailed to obtain Ticket from Crosswork, aborting....")
             sys.exit(1)
 
 
@@ -144,7 +144,7 @@ if __name__ == "__main__":
         if response.status_code == 200:
             token = response.text
         else:
-            print("Failed to obtain token for current session, aborting....")
+            print("\nFailed to obtain token for current session, aborting....")
             sys.exit(1)
 
 
@@ -160,7 +160,7 @@ if __name__ == "__main__":
         if response.status_code == 200:
             image_content = response.text
         else:
-            print("Failed to obtain images on the server, aborting....")
+            print("\nFailed to obtain images on the server, aborting....")
             sys.exit(1)
 
         for image in json.loads(image_content)['content']:
@@ -188,19 +188,19 @@ if __name__ == "__main__":
 
         
         if response.status_code == 200:
-            print("Configuration successfully updated")
+            print("\nConfiguration successfully updated")
         elif response.status_code == 404:
-            print("Failed to update configuration, config uuid does not exist, creating a new one...")
+            print("\nFailed to update configuration, config uuid does not exist, creating a new one...")
 
             with open(ZtpScriptConfigFile, 'rb') as config_file:
                 response = requests.post(str(CWUrl)+'configsvc/v1/configs/upload', headers=headers1, files={"configFile" : config_file},  params=params, verify=False)
 
             if response.status_code == 201:
-                print("Configuration successfully uploaded.")
+                print("\nConfiguration successfully uploaded.")
                 config_uuid = json.loads(response.text)["confId"]
-                print("New config ID is "+str(config_uuid)+" . Please update DHCP servers to reflect new URL.")
+                print("\nNew config ID is "+str(config_uuid)+" . Please update DHCP servers to reflect new URL.")
             else:
-                print("Failed to update or upload  configuration to server, aborting....")
+                print("\nFailed to update or upload  configuration to server, aborting....")
                 print(response.content)
                 sys.exit(1)
 
@@ -222,7 +222,7 @@ if __name__ == "__main__":
                 #     if config['confName'] == ZtpScriptConfigName:
                 #         config_uuid = config['confId']
         else:
-             print("Failed to update configuration.")
+             print("\nFailed to update configuration.")
              print(response.content)
              sys.exit(1)
         # Create ZTP profile using Image and Config IDs determined
@@ -240,10 +240,10 @@ if __name__ == "__main__":
         response = requests.post(str(CWUrl)+'ztp/v1/profiles', headers=headers, data=json.dumps(data), verify=False)
 
 
-        if json.loads(response.text)["code"]is 201:
-            print(" Profile Created successfully")
+        if json.loads(response.text)["code"] is 201:
+            print("\nProfile Created successfully")
         else:
-            print("Failed to create ZTP profile, might cause issues later...")
+            print("\nFailed to create ZTP profile, might cause issues later...")
         
         # Create Credential Profile for the Device to be added
 
@@ -257,9 +257,9 @@ if __name__ == "__main__":
         response = requests.post(str(CWUrl)+'inventory/v1/credentials', headers=headers, data=json.dumps(data), verify=False)
 
         if response.status_code is 200:
-            print(" ZTP Credential Profile Created successfully")
+            print("\nZTP Credential Profile Created successfully")
         else:
-            print("Failed to create ZTP credential profile, aborting....")
+            print("\nFailed to create ZTP credential profile, aborting....")
 
 
 
@@ -280,9 +280,9 @@ if __name__ == "__main__":
         response = requests.post(str(CWUrl)+'ztp/v1/devices', headers=headers, data=json.dumps(data), verify=False)
 
         if response.status_code == 200:
-            print(" Device Added successfully")
+            print("\nDevice Added successfully")
         else:
-            print("Failed to Add ZTP Device, aborting....")
+            print("\nFailed to Add ZTP Device, aborting....")
 
 
 
@@ -299,7 +299,7 @@ if __name__ == "__main__":
         if response.status_code is 200:
             cdg_duuid = json.loads(response.text)["data"][0]["duuid"]
         else:
-            print("Failed to Fetch CDG info, aborting")
+            print("\nFailed to Fetch CDG info, aborting")
             sys.exit(1)
 
         # Initiate ZTP (Device reload or new device powered on or ZTP initiate)
@@ -333,9 +333,9 @@ if __name__ == "__main__":
 
             response = requests.patch(str(CWUrl)+'ztp/v1/deviceinfo/status', headers=headers, data=json.dumps(data), verify=False)
             if response.status_code is 200:
-                print("Device with Serial-Number: "+ str(ztpsuccess_sn)+ " successfully Provisioned using ZTP. Now, proceeding to onboard for Day1+ Change Management...")
+                print("\nDevice with Serial-Number: "+ str(ztpsuccess_sn)+ " successfully Provisioned using ZTP. Now, proceeding to onboard for Day1+ Change Management...")
             else:
-                print("Failed to update ZTP device state to provisioned, aborting for this device...")
+                print("\nFailed to update ZTP device state to provisioned, aborting for this device...")
                 continue
 
             # Device onboarded with ZTP, now attach to CDG to continue onboarding for Day 1 change management
@@ -359,7 +359,7 @@ if __name__ == "__main__":
             if response.status_code is 200:
                 cdg_device_uuid = json.loads(response.text)["data"][0]["uuid"]
             else:
-                print("Failed to fetch device uuid for cdg attachment, aborting for this device...")
+                print("\nFailed to fetch device uuid for cdg attachment, aborting for this device...")
                 continue
 
 
@@ -383,13 +383,13 @@ if __name__ == "__main__":
 
             response = requests.put(str(CWUrl)+'inventory/v1/dg/devicemapping', headers=headers, data=json.dumps(data), verify=False)
             if response.status_code is 200:
-                print("Device with Serial-Number: "+ str(ztpsuccess_sn)+ " successfully onboarded for Day 1+ Change Management Workflows.")
+                print("\nDevice with Serial-Number: "+ str(ztpsuccess_sn)+ " successfully onboarded for Day 1+ Change Management Workflows.")
             else:
-                print("Failed to attach device to CDG, might require intervention to complete onboarding...")
+                print("\nFailed to attach device to CDG, might require intervention to complete onboarding...")
                 continue
 
         except Exception as e:
-            print("Failed to read from Event Queue, Error is "+str(e))
+            print("\nFailed to read from Event Queue, Error is "+str(e))
 
 
         
