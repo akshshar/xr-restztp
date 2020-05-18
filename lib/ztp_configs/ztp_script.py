@@ -154,7 +154,12 @@ if __name__ == "__main__":
         ztp_script.syslogger.info("Unable to get the status of RSA keys: "+str(show_pubkey["output"]))
         # Not quitting the script because of this failure
    
+    # Config apply with string using Parent class helper method: xrapply_string
 
+    print "\n###### Apply valid configuration using a string ######\n"
+    out = ztp_script.xrapply_string("domain name-server 171.70.168.183")
+    pprint(out)
+    
     # Config apply with file using Parent class helper method: xrapply
 
     print "\n###### Apply valid configuration using a file ######\n"
@@ -181,11 +186,7 @@ if __name__ == "__main__":
         f.seek(0)
         print ztp_script.xrapply(f.name)
 
-    # Config apply with string using Parent class helper method: xrapply_string
 
-    print "\n###### Apply valid configuration using a string ######\n"
-    out = ztp_script.xrapply_string("domain name-server 171.70.168.183")
-    pprint(out)
 
 
 # Determine Final IPv4 address applied to Mgmt port
