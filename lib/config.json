@@ -55,9 +55,9 @@
                         "providerName": "",
                         "providerDeviceKey": ""
                     },
-                    "osPlatform": "IOS-XR",
+                    "osPlatform": "",
                     "uuid": "d9d30972-210d-4f8c-a55d-6919ea0049ce",
-                    "deviceFamily": "CISCO NCS5500",
+                    "deviceFamily": "",
                     "config": "",
                     "image": "",
                     "connectivityDetails": [],

@@ -271,10 +271,12 @@ if __name__ == "__main__":
             'Authorization': 'Bearer '+str(token)
         }
 
-        Device["image"] = image_uuid
-        Device["config"] = config_uuid
-        Device["version"] = OSVersion
+        #Device["image"] = image_uuid
+        #Device["config"] = config_uuid
+        #Device["version"] = OSVersion
         Device["serialNumber"] = SerialNumber
+        Device["profileName"] = ZtpProfile["profileName"]
+
 
         data = {"nodes": [Device]}
         response = requests.post(str(CWUrl)+'ztp/v1/devices', headers=headers, data=json.dumps(data), verify=False)
