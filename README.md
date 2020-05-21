@@ -7,7 +7,7 @@ It also hosts a flask based REST server in a thread to listen for POST events fr
 
 The flow of events is showcased below:
 
-![demo-flow](/images/demo_flow.gif)
+![demo-flow](https://github.com/akshshar/xr-restztp/blob/master/images/demo_flow.gif?raw=true)
 
 ## Postman Collection
 The Relevant APIs used for Cisco crosswork and to test the basic Flask server hosted by xr-restztp are captured in the Postman collection that can be found at the following URL:
@@ -16,7 +16,7 @@ The Relevant APIs used for Cisco crosswork and to test the basic Flask server ho
 
 Some Snapshots of these APIs are given below. Click the link above to view the same in your Postman Dashboard:
 
-![postman](/images/postman-snapshot.png)
+![postman](https://github.com/akshshar/xr-restztp/blob/master/images/postman-snapshot.png?raw=true)
 
 ## Running the Server
 The code for the server is automatically built into a Docker image on Dockerhub here: https://hub.docker.com/repository/docker/akshshar/xr-restztp-hook
