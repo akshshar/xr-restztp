@@ -8,3 +8,12 @@ It also hosts a flask based REST server in a thread to listen for POST events fr
 The flow of events is showcased below:
 
 ![demo-flow](/demo_flow.gif)
+
+## Postman Collection
+The Relevant APIs used for Cisco crosswork and to test the basic Flask server hosted by xr-restztp are captured in the Postman collection that can be found at the following URL:
+
+><https://www.getpostman.com/collections/d3a93409079076af3c7b>
+
+Some Snapshots of these APIs are given below. Click the link above to view the same in your Postman Dashboard:
+
+![postman][/images/postman-snapshot.png]
