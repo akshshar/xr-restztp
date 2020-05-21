@@ -16,4 +16,4 @@ The Relevant APIs used for Cisco crosswork and to test the basic Flask server ho
 
 Some Snapshots of these APIs are given below. Click the link above to view the same in your Postman Dashboard:
 
-![postman][/images/postman-snapshot.png]
+![postman](/images/postman-snapshot.png)
